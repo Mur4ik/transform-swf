@@ -1,4 +1,8 @@
-build
+.classpath
 .project
-.settings
-bin
+.pmd
+.settings/
+target/
+
+/pom.xml.releaseBackup
+/release.properties
