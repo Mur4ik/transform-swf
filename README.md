@@ -1,6 +1,8 @@
 Transform SWF
 =============
 
+[![Build Status](https://travis-ci.org/ReadyTalk/transform-swf.png)](https://travis-ci.org/ReadyTalk/transform-swf)
+
 Transform SWF is a collection of classes for each of the data structures and tags that make up the Flash File Format Specification from Adobe. The classes provide a completely object-oriented API to encode and decode Flash (.swf) files. Transform SWF supports the latest published version - Flash 10.
 
 The library also contains classes that provide a higher level interface supporting the addition of shapes, images, sounds, fonts and text from external file formats.
