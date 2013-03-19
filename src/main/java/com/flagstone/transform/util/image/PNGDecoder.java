@@ -215,20 +215,20 @@ public final class PNGDecoder implements ImageProvider, ImageDecoder {
         RandomAccessFile raf = new RandomAccessFile(file, "r");
         try {
           info.setInput(raf);
-        } finally {
-          raf.close();
-        }
 //        info.setDetermineImageNumber(true);
 
-        if (!info.check()) {
-            throw new DataFormatException(BAD_FORMAT);
-        }
-
-        InputStream is = new FileInputStream(file);
-        try {
-          read(is);
+          if (! info.check()) {
+              throw new DataFormatException(BAD_FORMAT);
+          }
+  
+          InputStream is = new FileInputStream(file);
+          try {
+            read(is);
+          } finally {
+            is.close();
+          }
         } finally {
-          is.close();
+          raf.close();
         }
     }
 

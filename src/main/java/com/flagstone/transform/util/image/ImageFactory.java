@@ -146,23 +146,22 @@ public final class ImageFactory {
         RandomAccessFile raf = new RandomAccessFile(file, "r");
         try {
           info.setInput(raf);
-        } finally {
-          raf.close();
-        }
-        
 //        info.setDetermineImageNumber(true);
 
-        if (!info.check()) {
-            throw new DataFormatException("Unsupported format");
-        }
-
-        decoder = ImageRegistry.getImageProvider(
-                info.getImageFormat().getMimeType());
-        InputStream is = new FileInputStream(file);
-        try {
-          decoder.read(is);
+          if (! info.check()) {
+              throw new DataFormatException("Unsupported format");
+          }
+  
+          decoder = ImageRegistry.getImageProvider(
+                  info.getImageFormat().getMimeType());
+          InputStream is = new FileInputStream(file);
+          try {
+            decoder.read(is);
+          } finally {
+            is.close();
+          }
         } finally {
-          is.close();
+          raf.close();
         }
     }
 
