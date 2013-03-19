@@ -152,7 +152,12 @@ public final class ImageFactory {
 
         decoder = ImageRegistry.getImageProvider(
                 info.getImageFormat().getMimeType());
-        decoder.read(new FileInputStream(file));
+        InputStream is = new FileInputStream(file);
+        try {
+          decoder.read(is);
+        } finally {
+          is.close();
+        }
     }
 
     /**

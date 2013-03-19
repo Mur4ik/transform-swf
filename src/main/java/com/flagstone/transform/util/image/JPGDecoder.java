@@ -65,7 +65,12 @@ public final class JPGDecoder implements ImageProvider, ImageDecoder {
     /** {@inheritDoc} */
     @Override
 	public void read(final File file) throws IOException, DataFormatException {
-        read(new FileInputStream(file));
+      InputStream is = new FileInputStream(file);
+      try {
+        read(is);
+      } finally {
+        is.close();
+      }
     }
 
     /** {@inheritDoc} */

@@ -86,7 +86,12 @@ public final class WAVDecoder implements SoundProvider, SoundDecoder {
 
     /** {@inheritDoc} */
     public void read(final File file) throws IOException, DataFormatException {
-        read(new FileInputStream(file));
+      InputStream is = new FileInputStream(file);
+      try {
+        read(is);
+      } finally {
+        is.close();
+      }
     }
 
     /** {@inheritDoc} */
@@ -98,7 +103,12 @@ public final class WAVDecoder implements SoundProvider, SoundDecoder {
         if (fileSize < 0) {
             throw new FileNotFoundException(url.getFile());
         }
-        read(url.openStream());
+        InputStream is = url.openStream();
+        try {
+          read(is);
+        } finally {
+          is.close();
+        }
     }
 
     /** {@inheritDoc} */

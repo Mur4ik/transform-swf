@@ -212,7 +212,12 @@ public final class Movie implements Copyable<Movie> {
      */
     public void decodeFromFile(final File file) throws DataFormatException,
             IOException {
-        decodeFromStream(new FileInputStream(file));
+      InputStream is = new FileInputStream(file);
+      try {
+        decodeFromStream(is);
+      } finally {
+        is.close();
+      }
     }
 
     /**

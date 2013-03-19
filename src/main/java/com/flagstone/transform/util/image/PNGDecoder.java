@@ -219,7 +219,12 @@ public final class PNGDecoder implements ImageProvider, ImageDecoder {
             throw new DataFormatException(BAD_FORMAT);
         }
 
-        read(new FileInputStream(file));
+        InputStream is = new FileInputStream(file);
+        try {
+          read(is);
+        } finally {
+          is.close();
+        }
     }
 
     /** {@inheritDoc} */
@@ -232,7 +237,12 @@ public final class PNGDecoder implements ImageProvider, ImageDecoder {
             throw new FileNotFoundException(url.getFile());
         }
 
-        read(url.openStream());
+        InputStream is = url.openStream();
+        try {
+          read(is);
+        } finally {
+          is.close();
+        }
     }
 
     /** {@inheritDoc} */

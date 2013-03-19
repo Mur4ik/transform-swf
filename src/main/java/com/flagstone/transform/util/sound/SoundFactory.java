@@ -81,7 +81,12 @@ public final class SoundFactory {
         }
 
         decoder = SoundRegistry.getSoundProvider(mimeType);
-        decoder.read(new FileInputStream(file));
+        InputStream is = new FileInputStream(file);
+        try {
+          decoder.read(is);
+        } finally {
+          is.close();
+        }
     }
 
     /**
