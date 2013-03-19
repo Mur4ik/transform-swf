@@ -212,7 +212,12 @@ public final class PNGDecoder implements ImageProvider, ImageDecoder {
     @Override
 	public void read(final File file) throws IOException, DataFormatException {
         final ImageInfo info = new ImageInfo();
-        info.setInput(new RandomAccessFile(file, "r"));
+        RandomAccessFile raf = new RandomAccessFile(file, "r");
+        try {
+          info.setInput(raf);
+        } finally {
+          raf.close();
+        }
 //        info.setDetermineImageNumber(true);
 
         if (!info.check()) {
